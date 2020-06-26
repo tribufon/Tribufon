@@ -1265,7 +1265,6 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 
 - (void)startLinphoneCore {
     linphone_core_start([LinphoneManager getLc]);
-	[CoreManager.instance startIterateTimer];
 }
 
 - (void)createLinphoneCore {
@@ -1316,9 +1315,8 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	linphone_core_add_callbacks(theLinphoneCore, cbs);
 
 	[CallManager.instance setCoreWithCore:theLinphoneCore];
-	[CoreManager.instance setCoreWithCore:theLinphoneCore];
 	[ConfigManager.instance setDbWithDb:_configDb];
-
+	linphone_core_set_auto_iterate_enabled(theLinphoneCore, TRUE);
 	linphone_core_start(theLinphoneCore);
 
 	// Let the core handle cbs
@@ -1355,17 +1353,9 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 	 name:kLinphoneConfiguringStateUpdate
 	 object:nil];
 	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(inappReady:) name:kIAPReady object:nil];
-
-	/*call iterate once immediately in order to initiate background connections with sip server or remote provisioning
-	 * grab, if any */
-	//[self iterate];
-	// start scheduler
-	//mIterateTimer =
-	//	[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(iterate) userInfo:nil repeats:YES];
 }
 
 - (void)destroyLinphoneCore {
-	//[mIterateTimer invalidate];
 	// just in case
 	[self removeCTCallCenterCb];
 
