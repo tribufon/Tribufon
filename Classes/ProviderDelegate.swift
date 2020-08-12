@@ -82,12 +82,12 @@ class ProviderDelegate: NSObject {
     static var providerConfigurationSilent: CXProviderConfiguration = {
         let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
         providerConfiguration.ringtoneSound = nil
-        providerConfiguration.supportsVideo = true
-        providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
+        providerConfiguration.supportsVideo = false
+        providerConfiguration.iconTemplateImageData = nil
         providerConfiguration.supportedHandleTypes = [.generic]
-
-        providerConfiguration.maximumCallsPerCallGroup = 10
-        providerConfiguration.maximumCallGroups = 2
+        providerConfiguration.includesCallsInRecents = false
+        providerConfiguration.maximumCallsPerCallGroup = 0
+        providerConfiguration.maximumCallGroups = 0
 
         //not show app's calls in tel's history
         //providerConfiguration.includesCallsInRecents = YES;
@@ -101,6 +101,11 @@ class ProviderDelegate: NSObject {
 		update.hasVideo = hasVideo
         
         if shouldBeSilent {
+            update.supportsHolding = false
+            update.supportsGrouping = false
+            update.supportsUngrouping = false
+            update.supportsDTMF = false
+            update.hasVideo = false
             provider.configuration = ProviderDelegate.providerConfigurationSilent
         } else {
             provider.configuration = ProviderDelegate.providerConfiguration
