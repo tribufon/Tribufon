@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D20F63224E4446A0024E006 /* shhht.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0D20F63124E444670024E006 /* shhht.caf */; };
 		0DFF966C24D9F30A00795C87 /* peek_door_quest.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0DFF966B24D9F30500795C87 /* peek_door_quest.caf */; };
 		152F22361B15E889008C0621 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 152F22351B15E889008C0621 /* libxml2.dylib */; };
 		1D3623260D0F684500981E51 /* LinphoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* LinphoneAppDelegate.m */; };
@@ -830,6 +831,7 @@
 
 /* Begin PBXFileReference section */
 		046DEFE77AD0675DA9932C4C /* Pods-liblinphoneTesterTests.distributionadhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liblinphoneTesterTests.distributionadhoc.xcconfig"; path = "Pods/Target Support Files/Pods-liblinphoneTesterTests/Pods-liblinphoneTesterTests.distributionadhoc.xcconfig"; sourceTree = "<group>"; };
+		0D20F63124E444670024E006 /* shhht.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shhht.caf; sourceTree = "<group>"; };
 		0DF5143424CCB44700479337 /* linphone copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "linphone copy-Info.plist"; path = "/Users/lyubomir.marinov/Downloads/linphone-iphone/linphone copy-Info.plist"; sourceTree = "<absolute>"; };
 		0DF5144124CCB5C600479337 /* linphoneExtension copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "linphoneExtension copy-Info.plist"; path = "/Users/lyubomir.marinov/Downloads/linphone-iphone/linphoneExtension copy-Info.plist"; sourceTree = "<absolute>"; };
 		0DF5145324CCB60F00479337 /* msgNotificationService copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "msgNotificationService copy-Info.plist"; path = "/Users/lyubomir.marinov/Downloads/linphone-iphone/msgNotificationService copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -3006,6 +3008,7 @@
 			isa = PBXGroup;
 			children = (
 				0DFF966B24D9F30500795C87 /* peek_door_quest.caf */,
+				0D20F63124E444670024E006 /* shhht.caf */,
 				63DFE0451C40161700DA5E87 /* notes_of_the_optimistic.caf */,
 			);
 			path = ringtones;
@@ -3627,6 +3630,7 @@
 				24BFAAA6209B0630004F47A7 /* linphone_user~ipad.png in Resources */,
 				633FEEBF1D3CD55A0014B822 /* numpad_4_over~ipad.png in Resources */,
 				633FEEAD1D3CD55A0014B822 /* numpad_2_over.png in Resources */,
+				0D20F63224E4446A0024E006 /* shhht.caf in Resources */,
 				633FEE801D3CD5590014B822 /* led_connected.png in Resources */,
 				633FEEF41D3CD55A0014B822 /* numpad_star_default.png in Resources */,
 				61586B93217A17700038AC45 /* menu_recordings@2x.png in Resources */,

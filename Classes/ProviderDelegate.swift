@@ -81,7 +81,7 @@ class ProviderDelegate: NSObject {
 
     static var providerConfigurationSilent: CXProviderConfiguration = {
         let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
-        providerConfiguration.ringtoneSound = nil
+        providerConfiguration.ringtoneSound = "shhht.caf"
         providerConfiguration.supportsVideo = false
         providerConfiguration.iconTemplateImageData = nil
         providerConfiguration.supportedHandleTypes = [.generic]
