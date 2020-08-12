@@ -63,26 +63,48 @@ class ProviderDelegate: NSObject {
 		provider.setDelegate(self, queue: nil)
 	}
 
-	static var providerConfiguration: CXProviderConfiguration = {
-		let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
-		providerConfiguration.ringtoneSound = "peek_door_quest.caf"
-		providerConfiguration.supportsVideo = true
-		providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
+    static var providerConfiguration: CXProviderConfiguration = {
+        let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
+        providerConfiguration.ringtoneSound = "peek_door_quest.caf"
+        providerConfiguration.supportsVideo = true
+        providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
         providerConfiguration.supportedHandleTypes = [.generic]
 
-		providerConfiguration.maximumCallsPerCallGroup = 10
-		providerConfiguration.maximumCallGroups = 2
+        providerConfiguration.maximumCallsPerCallGroup = 10
+        providerConfiguration.maximumCallGroups = 2
 
-		//not show app's calls in tel's history
-		//providerConfiguration.includesCallsInRecents = YES;
-		
-		return providerConfiguration
-	}()
+        //not show app's calls in tel's history
+        //providerConfiguration.includesCallsInRecents = YES;
+        
+        return providerConfiguration
+    }()
 
-	func reportIncomingCall(call:Call?, uuid: UUID, handle: String, hasVideo: Bool) {
+    static var providerConfigurationSilent: CXProviderConfiguration = {
+        let providerConfiguration = CXProviderConfiguration(localizedName: Bundle.main.infoDictionary!["CFBundleName"] as! String)
+        providerConfiguration.ringtoneSound = nil
+        providerConfiguration.supportsVideo = true
+        providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
+        providerConfiguration.supportedHandleTypes = [.generic]
+
+        providerConfiguration.maximumCallsPerCallGroup = 10
+        providerConfiguration.maximumCallGroups = 2
+
+        //not show app's calls in tel's history
+        //providerConfiguration.includesCallsInRecents = YES;
+        
+        return providerConfiguration
+    }()
+
+    func reportIncomingCall(call:Call?, uuid: UUID, handle: String, hasVideo: Bool, shouldBeSilent: Bool = false) {
 		let update = CXCallUpdate()
 		update.remoteHandle = CXHandle(type:.generic, value: handle)
 		update.hasVideo = hasVideo
+        
+        if shouldBeSilent {
+            provider.configuration = ProviderDelegate.providerConfigurationSilent
+        } else {
+            provider.configuration = ProviderDelegate.providerConfiguration
+        }
 
 		let callInfo = callInfos[uuid]
 		let callId = callInfo?.callId

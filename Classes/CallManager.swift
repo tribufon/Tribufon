@@ -187,14 +187,17 @@ import AVFoundation
     }
 
     func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500)) {
-                    let uuid = UUID()
-            let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
-            self.providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
-            self.providerDelegate.uuids.updateValue(uuid, forKey: callId)
-            providerDelegate.reportIncomingCall(call: call, uuid: uuid, handle: handle, hasVideo: hasVideo)
-        }
+        let uuid = UUID()
+        let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
 
+        providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
+        providerDelegate.uuids.updateValue(uuid, forKey: callId)
+        guard let _call = call else {
+            providerDelegate.reportIncomingCall(call:nil, uuid: uuid, handle: "Connecting...", hasVideo: false, shouldBeSilent: true)
+            providerDelegate.endCall(uuid: uuid)
+            return
+        }
+        providerDelegate.reportIncomingCall(call: _call, uuid: uuid, handle: handle, hasVideo: hasVideo)
     }
 
     @objc func acceptCall(call: OpaquePointer?, hasVideo:Bool) {
