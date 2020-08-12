@@ -1420,6 +1420,12 @@ void assistant_is_account_linked(LinphoneAccountCreator *creator, LinphoneAccoun
 				// reload address book to prepend proxy config domain to contacts' phone number
 				// todo: STOP doing that!
 				[[LinphoneManager.instance fastAddressBook] fetchContactsInBackGroundThread];
+                
+                linphone_core_start_dtmf_stream(LC);
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo
+                 completionHandler:^(BOOL granted){
+                    }];
+                
                 [PhoneMainView.instance changeCurrentView:DialerView.compositeViewDescription];
                 NSString *storedToken = [[NSUserDefaults standardUserDefaults] valueForKey:@"tribuPushKitToken"];
                 if(storedToken) {

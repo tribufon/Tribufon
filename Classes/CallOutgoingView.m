@@ -73,6 +73,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 	[_speakerButton update];
 	[_microButton update];
 	[_routesButton update];
+    
+    [_addressLabel setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

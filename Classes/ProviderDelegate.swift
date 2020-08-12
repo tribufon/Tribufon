@@ -68,7 +68,7 @@ class ProviderDelegate: NSObject {
 		providerConfiguration.ringtoneSound = "peek_door_quest.caf"
 		providerConfiguration.supportsVideo = true
 		providerConfiguration.iconTemplateImageData = UIImage(named: "callkit_logo")?.pngData()
-		providerConfiguration.supportedHandleTypes = [.generic]
+        providerConfiguration.supportedHandleTypes = [.generic]
 
 		providerConfiguration.maximumCallsPerCallGroup = 10
 		providerConfiguration.maximumCallGroups = 2
