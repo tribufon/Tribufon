@@ -189,15 +189,12 @@ import AVFoundation
     func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String) {
         let uuid = UUID()
         let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
+        
+        let bla = Thread.isMainThread ? "isMainThread" : "e sq si ... maikata :("
 
         providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
         providerDelegate.uuids.updateValue(uuid, forKey: callId)
-        guard let _call = call else {
-            providerDelegate.reportIncomingCall(call:nil, uuid: uuid, handle: "Calling .....", hasVideo: false)
-            providerDelegate.endCall(uuid: uuid)
-            return
-        }
-        providerDelegate.reportIncomingCall(call: _call, uuid: uuid, handle: handle, hasVideo: hasVideo)
+        providerDelegate.reportIncomingCall(call: call, uuid: uuid, handle: bla, hasVideo: hasVideo)
     }
 
     @objc func acceptCall(call: OpaquePointer?, hasVideo:Bool) {
