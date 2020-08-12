@@ -85,7 +85,9 @@ class ProviderDelegate: NSObject {
         providerConfiguration.supportsVideo = false
         providerConfiguration.iconTemplateImageData = nil
         providerConfiguration.supportedHandleTypes = [.generic]
-        providerConfiguration.includesCallsInRecents = false
+        if #available(iOS 11.0, *) {
+            providerConfiguration.includesCallsInRecents = false
+        }
         providerConfiguration.maximumCallsPerCallGroup = 0
         providerConfiguration.maximumCallGroups = 0
 
