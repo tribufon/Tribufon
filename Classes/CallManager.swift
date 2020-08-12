@@ -190,8 +190,8 @@ import AVFoundation
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1500)) {
                     let uuid = UUID()
             let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
-            providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
-            providerDelegate.uuids.updateValue(uuid, forKey: callId)
+            self.providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
+            self.providerDelegate.uuids.updateValue(uuid, forKey: callId)
             providerDelegate.reportIncomingCall(call: call, uuid: uuid, handle: handle, hasVideo: hasVideo)
         }
 
