@@ -34,6 +34,8 @@
 										   selector:@selector(callUpdateEvent:)
 											   name:kLinphoneCallUpdate
 											 object:nil];
+    
+    [_addressLabel setHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

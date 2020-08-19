@@ -8,16 +8,6 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>More options</string>
-			<key>Key</key>
-			<string>account_mandatory_advanced_preference</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
 			<string>Account enabled</string>
 			<key>Key</key>
 			<string>account_is_enabled_preference</string>
@@ -101,46 +91,6 @@
 			<string>Alphabet</string>
 			<key>Title</key>
 			<string>User ID</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>IASKTextAlignment</key>
-			<string>IASKUITextAlignmentRight</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<true/>
-			<key>Key</key>
-			<string>account_mandatory_password_preference</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>Title</key>
-			<string>Password</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>IASKTextAlignment</key>
-			<string>IASKUITextAlignmentRight</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>Key</key>
-			<string>account_mandatory_domain_preference</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
-			<key>Title</key>
-			<string>Domain</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 		</dict>

@@ -413,7 +413,9 @@ CGRect IASKCGRectSwap(CGRect rect);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.settingsReader numberOfRowsForSection:section];
+    NSInteger rows = [self.settingsReader numberOfRowsForSection:section];
+    if ([self.file isEqualToString:@"Root"] && section == 0 && rows > 1) return rows - 1;
+    return rows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

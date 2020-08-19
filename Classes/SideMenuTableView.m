@@ -83,13 +83,13 @@
 												[PhoneMainView.instance
 													changeCurrentView:SettingsView.compositeViewDescription];
 											  }]];
-    [_sideMenuEntries
-     addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
-                                              image:[UIImage imageNamed:@"menu_recordings.png"]
-                                           tapBlock:^() {
-                                               [PhoneMainView.instance
-                                                changeCurrentView:RecordingsListView.compositeViewDescription];
-                                           }]];
+//    [_sideMenuEntries
+//     addObject:[[SideMenuEntry alloc] initWithTitle:NSLocalizedString(@"Recordings", nil)
+//                                              image:[UIImage imageNamed:@"menu_recordings.png"]
+//                                           tapBlock:^() {
+//                                               [PhoneMainView.instance
+//                                                changeCurrentView:RecordingsListView.compositeViewDescription];
+//                                           }]];
 	InAppProductsManager *iapm = LinphoneManager.instance.iapManager;
 	if (iapm.enabled){
 		[_sideMenuEntries
