@@ -142,6 +142,7 @@ static UICompositeViewDescription *compositeDescription = nil;
     
     callRecording = FALSE;
     _recordButtonOnView.hidden = TRUE;
+    _recordButton.hidden = TRUE;
 
 	// Update on show
 	[self hideRoutes:TRUE animated:FALSE];
