@@ -87,6 +87,8 @@ static UICompositeViewDescription *compositeDescription = nil;
 											 selector: @selector(deviceOrientationDidChange:)
 												 name: UIDeviceOrientationDidChangeNotification
 											   object: nil];
+    
+    [_addressLabel setHidden:true];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -158,9 +160,10 @@ static UICompositeViewDescription *compositeDescription = nil;
 
 - (void)shouldHideEncryptedChatView:(BOOL)hasLime {
     _encryptedChatView.hidden = !hasLime;
+    [_optionsView viewWithTag:12].hidden = true; // KMHK0312: hide chat button
     CGRect newFrame = _optionsView.frame;
     if (!hasLime) {
-        newFrame.origin.x = _encryptedChatView.frame.size.width * 2/3;
+        newFrame.origin.x = _encryptedChatView.frame.size.width * 7/6;
         
     } else {
         newFrame.origin.x = 0;
