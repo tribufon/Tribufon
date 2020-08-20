@@ -27,3 +27,5 @@ DerivedData/
 
 ## Stupid Xcode shit
 *.xcworkspace/xcuserdata/*
+
+Pods/*
