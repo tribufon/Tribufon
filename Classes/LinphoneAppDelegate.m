@@ -34,6 +34,8 @@
 #ifdef USE_CRASHLYTICS
 #include "FIRApp.h"
 #endif
+#import <OneSignal/OneSignal.h>
+
 
 @implementation LinphoneAppDelegate
 
@@ -334,6 +336,22 @@
         _shortcutItem = shortcutItem;
         return NO;
     }
+    
+    //Remove this method to stop OneSignal Debugging
+    [OneSignal setLogLevel:ONE_S_LL_VERBOSE visualLevel:ONE_S_LL_NONE];
+    
+    //START OneSignal initialization code
+    [OneSignal initWithLaunchOptions:launchOptions
+     appId:@"YOUR_ONESIGNAL_APP_ID"
+     handleNotificationAction:nil
+     settings:@{kOSSettingsKeyAutoPrompt: @false, kOSSettingsKeyInAppLaunchURL: @false}];
+    OneSignal.inFocusDisplayType = OSNotificationDisplayTypeNotification;
+
+    // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
+    [OneSignal promptForPushNotificationsWithUserResponse:^(BOOL accepted) {
+      NSLog(@"User accepted notifications: %d", accepted);
+    }];
+    //END OneSignal initializataion code
 
 	return YES;
 }

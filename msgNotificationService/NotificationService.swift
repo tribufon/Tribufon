@@ -22,6 +22,7 @@ import linphonesw
 #if USE_CRASHLYTICS
 import Firebase
 #endif
+import OneSignal
 
 var APP_GROUP_ID = "group.sip.tribu.ios.msgNotification"
 var LINPHONE_DUMMY_SUBJECT = "dummy subject"
@@ -39,6 +40,7 @@ class NotificationService: UNNotificationServiceExtension {
 
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
+    var receivedRequest: UNNotificationRequest!
 
     var lc: Core?
     static var logDelegate: LinphoneLoggingServiceManager!
@@ -52,6 +54,7 @@ class NotificationService: UNNotificationServiceExtension {
 	}
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
+        self.receivedRequest = request
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         NSLog("[msgNotificationService] start msgNotificationService extension")
@@ -59,6 +62,8 @@ class NotificationService: UNNotificationServiceExtension {
 		if let bestAttemptContent = bestAttemptContent {
 			createCore()
 			NotificationService.log.message(msg: "received push payload : \(bestAttemptContent.userInfo.debugDescription)")
+            
+            OneSignal.didReceiveNotificationExtensionRequest(self.receivedRequest, with: self.bestAttemptContent)
 
 			if let chatRoomInviteAddr = bestAttemptContent.userInfo["chat-room-addr"] as? String, !chatRoomInviteAddr.isEmpty {
 				NotificationService.log.message(msg: "fetch chat room for invite, addr: \(chatRoomInviteAddr)")
@@ -126,6 +131,8 @@ class NotificationService: UNNotificationServiceExtension {
         // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
 		NotificationService.log.warning(msg: "serviceExtensionTimeWillExpire")
 		stopCore()
+        // Called just before the extension will be terminated by the system.
+        // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
         if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
             NSLog("[msgNotificationService] serviceExtensionTimeWillExpire")
             bestAttemptContent.categoryIdentifier = "app_active"
@@ -138,6 +145,7 @@ class NotificationService: UNNotificationServiceExtension {
 				bestAttemptContent.title = NSLocalizedString("Message received", comment: "")
 				bestAttemptContent.body = NSLocalizedString("IM_MSG", comment: "")
 			}
+            OneSignal.serviceExtensionTimeWillExpireRequest(self.receivedRequest, with: self.bestAttemptContent)
             contentHandler(bestAttemptContent)
         }
     }

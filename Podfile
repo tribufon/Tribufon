@@ -11,11 +11,13 @@ def all_pods
 	end
 
 	crashlytics
+        pod 'OneSignal', '>= 2.11.2', '< 3.0'
 end
 
 def tribu
   pod 'QRCodeReaderViewController', '~> 4.0'
   pod 'MaterialComponents', '~> 111.0'
+  
 end
 
 def crashlytics
