@@ -1068,9 +1068,16 @@ static void linphone_iphone_is_composing_received(LinphoneCore *lc, LinphoneChat
 #pragma mark -
 
 // scheduling loop
-- (void)iterate {
+/*- (void)iterate {
+	UIBackgroundTaskIdentifier coreIterateTaskId = 0;
+	coreIterateTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+			LOGW(@"Background task for core iteration launching expired.");
+			[[UIApplication sharedApplication] endBackgroundTask:coreIterateTaskId];
+		}];
 	linphone_core_iterate(theLinphoneCore);
-}
+	if (coreIterateTaskId != UIBackgroundTaskInvalid)
+		[[UIApplication sharedApplication] endBackgroundTask:coreIterateTaskId];
+}*/
 
 /** Should be called once per linphone_core_new() */
 - (void)finishCoreConfiguration {
@@ -1351,13 +1358,14 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 
 	/*call iterate once immediately in order to initiate background connections with sip server or remote provisioning
 	 * grab, if any */
-	[self iterate];
+	//[self iterate];
 	// start scheduler
-	[CoreManager.instance startIterateTimer];
+	//mIterateTimer =
+	//	[NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(iterate) userInfo:nil repeats:YES];
 }
 
 - (void)destroyLinphoneCore {
-	[CoreManager.instance stopIterateTimer];
+	//[mIterateTimer invalidate];
 	// just in case
 	[self removeCTCallCenterCb];
 
@@ -1481,7 +1489,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 			proxies = proxies->next;
 		}
 		// force registration update first, then update friend list subscription
-		[self iterate];
+		//[self iterate];
 	}
 
 	linphone_core_enable_friend_list_subscription(LC, enabled && [LinphoneManager.instance lpConfigBoolForKey:@"use_rls_presence"]);
@@ -1523,7 +1531,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
                          // For registration register
                          [self refreshRegisters];
                      }
-                     linphone_core_iterate(theLinphoneCore);
+                     //linphone_core_iterate(theLinphoneCore);
                  }]) {
 		     LOGI(@"keepalive handler succesfully registered");
                  } else {
@@ -1546,7 +1554,7 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 	// Stop the video preview
 	if (theLinphoneCore) {
 		linphone_core_enable_video_preview(theLinphoneCore, FALSE);
-		[self iterate];
+		//[self iterate];
 	}
 	linphone_core_stop_dtmf_stream(theLinphoneCore);
 
