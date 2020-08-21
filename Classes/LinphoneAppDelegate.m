@@ -341,10 +341,10 @@
     [OneSignal setLogLevel:ONE_S_LL_VERBOSE visualLevel:ONE_S_LL_NONE];
     
     //START OneSignal initialization code
-    [OneSignal initWithLaunchOptions:launchOptions
-     appId:@"YOUR_ONESIGNAL_APP_ID"
-     handleNotificationAction:nil
-     settings:@{kOSSettingsKeyAutoPrompt: @false, kOSSettingsKeyInAppLaunchURL: @false}];
+    [OneSignal initWithLaunchOptions: launchOptions
+                               appId:@"8587094a-4d59-4c60-9d97-ba2a6a9a6e9c"
+            handleNotificationAction:nil
+                            settings:@{kOSSettingsKeyAutoPrompt: @false, kOSSettingsKeyInAppLaunchURL: @false}];
     OneSignal.inFocusDisplayType = OSNotificationDisplayTypeNotification;
 
     // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 6)
