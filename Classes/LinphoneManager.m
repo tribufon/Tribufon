@@ -1235,7 +1235,7 @@ void popup_link_account_cb(LinphoneAccountCreator *creator, LinphoneAccountCreat
 			[LinphoneManager.instance
 			 lpConfigSetInt:[[NSDate date] dateByAddingTimeInterval:[LinphoneManager.instance
 										 lpConfigIntForKey:@"link_account_popup_time"
-										 withDefault:84200]]
+										 withDefault:86400]]
 			 .timeIntervalSince1970
 			 forKey:@"must_link_account_time"];
 		}
@@ -1682,13 +1682,8 @@ static int comp_call_state_paused(const LinphoneCall *call, const void *param) {
 }
 
 - (void)overrideDefaultSettings {
-	NSString *factory = [LinphoneManager bundleFile:@"linphonerc-factory"];
-	NSString *factoryIpad = [LinphoneManager bundleFile:@"linphonerc-factory~ipad"];
-	if (IPAD && [[NSFileManager defaultManager] fileExistsAtPath:factoryIpad]) {
-		factory = factoryIpad;
-	}
-	_configDb = linphone_config_new_for_shared_core(kLinphoneMsgNotificationAppGroupId.UTF8String, @"linphonerc".UTF8String, factory.UTF8String);
-	lp_config_clean_entry(_configDb, "misc", "max_calls");
+	NSString *confiFileName = [LinphoneManager preferenceFile:@"linphonerc"];
+	_configDb = lp_config_new_with_factory([confiFileName UTF8String], NULL);
 }
 #pragma mark - Audio route Functions
 
