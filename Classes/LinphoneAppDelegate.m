@@ -461,7 +461,7 @@
 
 - (void)processRemoteNotification:(NSDictionary *)userInfo {
 	// support only for calls
-	NSDictionary *aps = [userInfo objectForKey:@"aps"];
+	NSDictionary *aps = [[userInfo objectForKey:@"data"] objectForKey: @"aps"];
 	//NSString *loc_key = [aps objectForKey:@"loc-key"] ?: [[aps objectForKey:@"alert"] objectForKey:@"loc-key"];
     NSString *callId = [aps objectForKey:@"call-id"] ?: @"";
 
