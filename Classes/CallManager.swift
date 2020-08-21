@@ -338,11 +338,6 @@ class CoreManagerDelegate: CoreDelegate {
 	static var speaker_already_enabled : Bool = false
 
 	override func onCallStateChanged(core: Core, call: Call, state cstate: Call.State, message: String) {
-		if (cstate == .PushIncomingReceived) {
-			CallManager.instance().displayIncomingCall(call: call, handle: "Calling", hasVideo: false, callId: call.callLog?.callId ?? "")
-			return;
-		}
-
 		let addr = call.remoteAddress;
 		let address = FastAddressBook.displayName(for: addr?.getCobject) ?? "Unknow"
 		let callLog = call.callLog
