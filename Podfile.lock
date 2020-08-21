@@ -1,17 +1,17 @@
 PODS:
-  - linphone-sdk (4.4.0):
-    - linphone-sdk/all-frameworks (= 4.4.0)
-    - linphone-sdk/app-extension (= 4.4.0)
-    - linphone-sdk/app-extension-swift (= 4.4.0)
-    - linphone-sdk/basic-frameworks (= 4.4.0)
-    - linphone-sdk/swift (= 4.4.0)
-  - linphone-sdk/all-frameworks (4.4.0)
-  - linphone-sdk/app-extension (4.4.0)
-  - linphone-sdk/app-extension-swift (4.4.0):
+  - "linphone-sdk (4.5.0-alpha.67+8b924e1)":
+    - "linphone-sdk/all-frameworks (= 4.5.0-alpha.67+8b924e1)"
+    - "linphone-sdk/app-extension (= 4.5.0-alpha.67+8b924e1)"
+    - "linphone-sdk/app-extension-swift (= 4.5.0-alpha.67+8b924e1)"
+    - "linphone-sdk/basic-frameworks (= 4.5.0-alpha.67+8b924e1)"
+    - "linphone-sdk/swift (= 4.5.0-alpha.67+8b924e1)"
+  - "linphone-sdk/all-frameworks (4.5.0-alpha.67+8b924e1)"
+  - "linphone-sdk/app-extension (4.5.0-alpha.67+8b924e1)"
+  - "linphone-sdk/app-extension-swift (4.5.0-alpha.67+8b924e1)":
     - linphone-sdk/app-extension
-  - linphone-sdk/basic-frameworks (4.4.0):
+  - "linphone-sdk/basic-frameworks (4.5.0-alpha.67+8b924e1)":
     - linphone-sdk/app-extension
-  - linphone-sdk/swift (4.4.0):
+  - "linphone-sdk/swift (4.5.0-alpha.67+8b924e1)":
     - linphone-sdk/app-extension-swift
     - linphone-sdk/basic-frameworks
   - MaterialComponents (111.0.0):
@@ -661,7 +661,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
-  - linphone-sdk (= 4.4.0)
+  - linphone-sdk (~> 4.5.0-alpha)
   - MaterialComponents (~> 111.0)
   - QRCodeReaderViewController (~> 4.0)
   - SVProgressHUD
@@ -679,7 +679,7 @@ SPEC REPOS:
     - linphone-sdk
 
 SPEC CHECKSUMS:
-  linphone-sdk: c5765e58b2b17f292e7792c6f4b231dfe4079c68
+  linphone-sdk: 7962e8354e1b5c1df75193e6c9c61120cf16ee19
   MaterialComponents: 533042da998b97ad13a6f544268f8026e8161cc5
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
@@ -688,6 +688,6 @@ SPEC CHECKSUMS:
   QRCodeReaderViewController: e8f27d035b3e72b1d4b1c61ff66458287e3be0ff
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 4c00521ba9e13762e7144a2963b778991049dc90
+PODFILE CHECKSUM: 98c9ea7e73fd3182d81542279af1699d3ee6a386
 
 COCOAPODS: 1.9.3

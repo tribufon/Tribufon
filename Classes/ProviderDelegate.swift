@@ -97,9 +97,9 @@ class ProviderDelegate: NSObject {
 				Log.directLog(BCTBX_LOG_ERROR, text: "CallKit: cannot complete incoming call with call-id: [\(String(describing: callId))] and UUID: [\(uuid.description)] from [\(handle)] caused by [\(error!.localizedDescription)]")
 				let code = (error as NSError?)?.code
 				if code == CXErrorCodeIncomingCallError.filteredByBlockList.rawValue || code == CXErrorCodeIncomingCallError.filteredByDoNotDisturb.rawValue {
-					try? call.decline(reason: Reason.Busy)
+                    try? call?.decline(reason: Reason.Busy)
 				} else {
-					try? call.decline(reason: Reason.Unknown)
+                    try? call?.decline(reason: Reason.Unknown)
 				}
 			}
 		}
