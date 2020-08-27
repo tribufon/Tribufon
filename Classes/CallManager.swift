@@ -47,6 +47,7 @@ import AVFoundation
     var referedFromCall: String?
     var referedToCall: String?
 
+    var tempUuid: UUID?
 
     fileprivate override init() {
         providerDelegate = ProviderDelegate()
@@ -187,17 +188,20 @@ import AVFoundation
     }
 
     func displayIncomingCall(call:Call?, handle: String, hasVideo: Bool, callId: String) {
-        let uuid = UUID()
         let callInfo = CallInfo.newIncomingCallInfo(callId: callId)
+        
+        if tempUuid == nil {
+            tempUuid = UUID()
+        }
 
-        providerDelegate.callInfos.updateValue(callInfo, forKey: uuid)
-        providerDelegate.uuids.updateValue(uuid, forKey: callId)
+        providerDelegate.callInfos.updateValue(callInfo, forKey: tempUuid!)
+        providerDelegate.uuids.updateValue(tempUuid!, forKey: callId)
         guard let _call = call else {
-            providerDelegate.reportIncomingCall(call:nil, uuid: uuid, handle: "Connecting...", hasVideo: false, shouldBeSilent: true)
-            providerDelegate.endCall(uuid: uuid)
+            providerDelegate.reportIncomingCall(call:nil, uuid: tempUuid!, handle: "Connecting...", hasVideo: false, shouldBeSilent: true)
             return
         }
-        providerDelegate.reportIncomingCall(call: _call, uuid: uuid, handle: handle, hasVideo: hasVideo)
+        providerDelegate.reportIncomingCall(call: _call, uuid: tempUuid!, handle: handle, hasVideo: hasVideo)
+        tempUuid = nil
     }
 
     @objc func acceptCall(call: OpaquePointer?, hasVideo:Bool) {
